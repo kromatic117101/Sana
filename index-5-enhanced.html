@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffb6d9">
+<meta name="description" content="A deep romantic long-distance love story for Sana, made with love by Sodo.">
+<title>Babu + Sana 💋 | By Sodo</title>
+<style>
+/* ── CONFIG ─────────────────────────────────────────── */
+:root{
+  --pink:#ff6fae;--hot:#ff1493;--lav:#d9c2ff;--cream:#fff8fc;--purple:#6e3c7c;
+  --bg-a:#ffc3df;--bg-b:#f59bd0;--bg-c:#cbb8ff;
+  --glow-l:#ffeff8;--glow-r:#bca0ff;
+}
+/* ── NIGHT OVERRIDE ─────────────────────────────────── */
+body.night{
+  --bg-a:#100620;--bg-b:#261050;--bg-c:#0a0215;
+  --glow-l:#2a0848;--glow-r:#170030;
+}
+body.night .card{background:linear-gradient(145deg,#2e106095,#18062880)!important;border-color:#b080ff55!important}
+body.night .side-card{background:#2a104875!important;border-color:#c090ff55!important;color:#e8d0ff!important}
+body.night .badge{background:#7030b095!important;border-color:#d090ff80!important}
+body.night button:not(.secondary):not(.mood-close):not(.mood-choice){background:#e8d0ff!important;color:#3d1080!important;box-shadow:0 7px 18px #60109040!important}
+body.night .letter{background:#1e0840ee!important;color:#dbb8ff!important;box-shadow:0 10px 25px #50108020!important}
+body.night .hint{color:#c0a0ff90!important}
+body.night .signature{color:#c0a0ff70!important}
+body.night #toast{color:#f0d8ff!important}
+body.night h1{text-shadow:0 3px 14px #a060ff50!important}
+
+/* ── RESET ──────────────────────────────────────────── */
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+  font-family:ui-rounded,"Segoe UI",system-ui,sans-serif;
+  color:#fff;
+  background:linear-gradient(135deg,var(--bg-a),var(--bg-b) 45%,var(--bg-c));
+  position:relative;transition:background 1s ease
+}
+body:before,body:after{
+  content:"";position:fixed;
+  width:65vw;height:65vw;max-width:550px;max-height:550px;
+  border-radius:50%;filter:blur(65px);opacity:.45;pointer-events:none;
+  transition:background 1s ease
+}
+body:before{background:var(--glow-l);top:-20%;left:-15%}
+body:after{background:var(--glow-r);right:-20%;bottom:-25%}
+
+/* ── DECOR ──────────────────────────────────────────── */
+#decor{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.float{position:absolute;bottom:-60px;animation:rise linear forwards;opacity:.8;filter:drop-shadow(0 3px 8px #ff4b9b55)}
+@keyframes rise{to{transform:translateY(-115vh) rotate(35deg);opacity:0}}
+.corner{position:fixed;font-size:clamp(22px,5vw,42px);z-index:3;animation:wobble 3s ease-in-out infinite;pointer-events:none;filter:drop-shadow(0 4px 8px #a02a7440)}
+.c1{top:12px;left:14px}.c2{top:12px;right:14px;animation-delay:.5s}.c3{bottom:12px;left:14px;animation-delay:1s}.c4{bottom:12px;right:14px;animation-delay:1.5s}
+@keyframes wobble{50%{transform:translateY(-8px) rotate(8deg)}}
+
+/* ── LAYOUT ─────────────────────────────────────────── */
+.app{position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;padding:48px 12px}
+.stage{width:min(100%,440px);height:min(78vh,680px);min-height:490px;position:relative;display:flex;align-items:center;justify-content:center}
+
+/* ── SIDE CARDS ─────────────────────────────────────── */
+.side-card{position:absolute;top:18%;width:100px;min-height:90px;border:1px solid #ffffffb8;background:#ffffff38;backdrop-filter:blur(12px);border-radius:22px;box-shadow:0 12px 35px #a82f7840;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;color:#fff;font-size:12px;font-weight:800;text-align:center;padding:10px;animation:sidefloat 4s ease-in-out infinite;z-index:1}
+.side-card .emoji{font-size:30px}
+.left{left:-22px;transform:rotate(-7deg)}
+.right{right:-22px;top:auto;bottom:17%;transform:rotate(7deg);animation-delay:1s}
+@keyframes sidefloat{50%{translate:0 -10px}}
+
+/* ── MAIN CARD ──────────────────────────────────────── */
+.card{position:relative;width:calc(100% - 42px);max-width:360px;max-height:100%;min-height:440px;padding:28px 22px 24px;border:1px solid #ffffffc9;border-radius:32px;background:linear-gradient(145deg,#ffffff61,#fff0f84f);backdrop-filter:blur(20px);box-shadow:0 22px 65px #a52d7740,inset 0 1px 0 #fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;z-index:2}
+.card:before{content:"";position:absolute;inset:8px;border:1px solid #ffffff6b;border-radius:25px;pointer-events:none}
+.badge{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:900;color:#fff;background:#ff5ca48c;border:1px solid #ffffff91;padding:8px 13px;border-radius:99px;margin-bottom:15px}
+.big-emoji{font-size:clamp(60px,17vw,88px);line-height:1.15;filter:drop-shadow(0 8px 12px #ff4c9d32);animation:bounce 2.4s ease-in-out infinite;margin:2px 0 12px}
+@keyframes bounce{50%{transform:translateY(-8px) rotate(3deg)}}
+h1{font-size:clamp(27px,7vw,38px);line-height:1.12;margin:7px 0 13px;color:#fff;text-shadow:0 3px 14px #d82f8a72;font-weight:950;letter-spacing:-.8px}
+p{font-size:15.5px;line-height:1.65;color:#fff;font-weight:650;margin:0 0 17px;text-shadow:0 1px 8px #a72b7140}
+.actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:8px;z-index:3}
+button{font:inherit;font-weight:850;border:0;border-radius:999px;padding:12px 17px;cursor:pointer;transition:transform .2s,box-shadow .2s;background:#fff;color:#ed4b99;box-shadow:0 7px 18px #b82c7140;touch-action:manipulation}
+button:hover{transform:translateY(-2px);box-shadow:0 10px 22px #b82c7155}
+button:active{transform:scale(.97)}
+button.secondary{background:#ffffff35;border:1px solid #ffffffad;color:white;box-shadow:none}
+
+/* ── PROGRESS ───────────────────────────────────────── */
+.progress-wrap{position:absolute;top:0;left:0;right:0;display:flex;gap:5px;padding:0 3px;z-index:4}
+.segment{height:4px;flex:1;background:#ffffff60;border-radius:9px;overflow:hidden}
+.segment span{display:block;height:100%;width:0;background:#fff;border-radius:9px}
+.segment.done span{width:100%}
+.page-count{position:absolute;top:13px;right:17px;font-size:11px;font-weight:900;color:#fff9;z-index:4}
+
+/* ── LETTER ─────────────────────────────────────────── */
+.letter{display:none;margin-top:12px;background:#fff9fc;color:#a83f76;border-radius:18px;padding:16px;font-size:14px;line-height:1.65;box-shadow:0 10px 25px #b82c7120}
+.letter.open{display:block;animation:pop .35s ease-out}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+
+/* ── TOAST ──────────────────────────────────────────── */
+#toast{min-height:25px;font-size:14px;font-weight:850;color:white;margin-top:12px;text-shadow:0 2px 8px #a72b7150}
+
+/* ── TOP CONTROLS ───────────────────────────────────── */
+.top-controls{position:fixed;z-index:5;top:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center}
+.ctrl-btn{font:inherit;font-size:12px;padding:9px 13px;background:#ffffff38;color:#fff;border:1px solid #ffffff88;box-shadow:none;backdrop-filter:blur(10px);white-space:nowrap;border-radius:999px;cursor:pointer;transition:transform .15s,background .15s;touch-action:manipulation;font-weight:850}
+.ctrl-btn:hover{background:#ffffff55;transform:translateY(-1px)}
+.ctrl-btn:active{transform:scale(.97)}
+
+/* ── NIGHT STAR BG ──────────────────────────────────── */
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity 1.2s ease}
+body.night #stars{opacity:1}
+
+/* ── DAY COUNTER ────────────────────────────────────── */
+#dayPill{
+  position:fixed;bottom:26px;left:12px;z-index:5;
+  font-size:11px;font-weight:900;color:#fff;
+  background:#ff6fae80;border:1px solid #ffffff70;
+  backdrop-filter:blur(10px);padding:8px 13px;border-radius:99px;
+  pointer-events:none;white-space:nowrap;
+  animation:pillpulse 3s ease-in-out infinite;
+  text-shadow:0 1px 4px #a02a7440
+}
+@keyframes pillpulse{50%{transform:scale(1.03)}}
+body.night #dayPill{background:#7030b080;border-color:#c090ff60}
+
+/* ── SPARKLE ────────────────────────────────────────── */
+.sp{position:fixed;pointer-events:none;z-index:9;font-size:14px;animation:spfly .65s ease-out forwards;transform-origin:center}
+@keyframes spfly{0%{opacity:1;transform:scale(.6) translateY(0)}100%{opacity:0;transform:scale(1.4) translateY(-40px)}}
+
+/* ── MOOD FAB ───────────────────────────────────────── */
+#moodFab{
+  position:fixed;bottom:24px;right:12px;z-index:5;
+  width:48px;height:48px;border-radius:50%;padding:0;
+  background:linear-gradient(135deg,#ff6fae,#c040a0);
+  border:2px solid #ffffff80;color:white;font-size:22px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:0 8px 22px #a82d7660;
+  animation:wobble 3.5s ease-in-out infinite;
+  touch-action:manipulation
+}
+body.night #moodFab{background:linear-gradient(135deg,#8040c0,#5010a0)}
+
+/* ── MOOD MODAL ─────────────────────────────────────── */
+.mood-overlay{
+  position:fixed;inset:0;background:#00000045;z-index:8;
+  display:none;align-items:flex-end;justify-content:center;
+  padding-bottom:90px;padding-left:12px;padding-right:12px
+}
+.mood-overlay.open{display:flex;animation:fadeup .25s ease-out}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.mood-box{
+  background:linear-gradient(145deg,#fff4fb,#f0e4ff);
+  border-radius:28px;padding:24px 20px;width:min(360px,100%);
+  text-align:center;box-shadow:0 24px 60px #a02a7455;
+  border:1px solid #ffccea
+}
+body.night .mood-box{background:linear-gradient(145deg,#2a1050,#1a082e);border-color:#8050c050}
+.mood-q{font-size:16px;font-weight:900;color:#9a3870;margin:0 0 16px;line-height:1.4}
+body.night .mood-q{color:#e0b8ff}
+.mood-choices{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:14px}
+.mood-choice{font-size:13px;padding:10px 14px;background:#fff;color:#b03a80;border:1.5px solid #ffaad4;border-radius:99px;font-weight:850;cursor:pointer;transition:transform .15s,background .15s;touch-action:manipulation}
+.mood-choice:hover{background:#ffecf5;transform:translateY(-2px)}
+.mood-choice:active{transform:scale(.97)}
+body.night .mood-choice{background:#3a1060;color:#e0b8ff;border-color:#8050c080}
+#moodReply{font-size:14px;color:#7a2a60;font-weight:750;line-height:1.6;min-height:44px;margin:0 0 16px;opacity:0;transition:opacity .35s;padding:0 4px}
+#moodReply.show{opacity:1}
+body.night #moodReply{color:#d0a0ff}
+.mood-close{
+  font-size:14px;font-weight:900;padding:12px 28px;
+  background:linear-gradient(135deg,#ff6fae,#c040a0);
+  color:#fff;border-radius:99px;cursor:pointer;border:none;
+  box-shadow:0 6px 18px #a82d7640;touch-action:manipulation
+}
+body.night .mood-close{background:linear-gradient(135deg,#7030b0,#4010a0)}
+
+/* ── HEART POP ──────────────────────────────────────── */
+.heart-pop{position:fixed;z-index:10;pointer-events:none;font-size:32px;animation:kisspop 1.25s ease-out forwards}
+@keyframes kisspop{0%{opacity:0;transform:translateY(15px) scale(.4)}25%{opacity:1}100%{opacity:0;transform:translateY(-110px) scale(1.6) rotate(18deg)}}
+
+/* ── MISC ────────────────────────────────────────────── */
+.envelope{font-size:58px;cursor:pointer;filter:drop-shadow(0 8px 15px #b52a7650);animation:bounce 2s infinite}
+.care-grid{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin:3px 0 8px}
+.care-grid button{font-size:12px;padding:10px 12px}
+.hint{position:absolute;bottom:-25px;width:100%;text-align:center;color:#fffbd9;font-size:11px;font-weight:700}
+.signature{position:fixed;bottom:7px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:3px;font-weight:900;color:#fffbdcaa;z-index:4}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:390px){
+  .stage{height:min(76vh,620px);min-height:440px}
+  .card{min-height:410px;padding:24px 17px 20px;width:calc(100% - 32px)}
+  .side-card{width:76px;font-size:10px;padding:8px;min-height:78px}
+  .side-card .emoji{font-size:24px}
+  .left{left:-7px}.right{right:-7px}
+  .big-emoji{font-size:62px}
+  p{font-size:14px}
+  #dayPill{font-size:10px;padding:7px 10px;bottom:22px}
+  #moodFab{width:42px;height:42px;font-size:19px;bottom:20px;right:8px}
+}
+@media(max-height:650px){
+  .stage{height:76vh;min-height:390px}
+  .card{min-height:370px;padding:18px 17px}
+  .big-emoji{font-size:55px}h1{font-size:27px}
+  p{font-size:13px;margin-bottom:10px}
+  .side-card{top:12%}.right{top:auto;bottom:12%}
+  .app{padding-top:42px;padding-bottom:36px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ── DECOR ──────────────────────────── -->
+<div id="decor" aria-hidden="true"></div>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="corner c1">🌹</div>
+<div class="corner c2">💋</div>
+<div class="corner c3">💗</div>
+<div class="corner c4">🧸</div>
+
+<!-- ── TOP CONTROLS ───────────────────── -->
+<div class="top-controls">
+  <button class="ctrl-btn" id="musicBtn" aria-label="Toggle music">♫ Music: Off</button>
+  <button class="ctrl-btn" id="nightBtn" aria-label="Toggle night mode">🌙 Night</button>
+</div>
+
+<!-- ── DAY COUNTER ────────────────────── -->
+<div id="dayPill">💗 Loading…</div>
+
+<!-- ── MOOD FAB ───────────────────────── -->
+<button id="moodFab" aria-label="How are you feeling?">🥺</button>
+
+<!-- ── MOOD MODAL ─────────────────────── -->
+<div class="mood-overlay" id="moodOverlay" role="dialog" aria-label="Mood check-in">
+  <div class="mood-box">
+    <p class="mood-q">Abhi kaisi ho, Sana? 🥹</p>
+    <div class="mood-choices">
+      <button class="mood-choice" data-mood="happy">😊 Khush hoon</button>
+      <button class="mood-choice" data-mood="miss">💔 Miss kar rahi</button>
+      <button class="mood-choice" data-mood="tired">😴 Thaki hoon</button>
+      <button class="mood-choice" data-mood="cry">🥺 Thoda rona hai</button>
+    </div>
+    <p id="moodReply"></p>
+    <button class="mood-close" id="moodClose">💗 Theek hai</button>
+  </div>
+</div>
+
+<!-- ── MAIN ───────────────────────────── -->
+<main class="app">
+  <div class="stage" id="stage">
+    <div class="side-card left"><span class="emoji">🧸</span><span>Babu 💋</span></div>
+    <div class="side-card right"><span class="emoji">💖</span><span>Sana 💗</span></div>
+    <section class="card" id="card" aria-live="polite">
+      <div class="progress-wrap" id="progress"></div>
+      <div class="page-count" id="pageCount">01 / 10</div>
+      <div class="badge" id="badge">A love story by Sodo</div>
+      <div class="big-emoji" id="emoji">🧸💋</div>
+      <h1 id="title">Babu + Sana 💋</h1>
+      <p id="message">Two hearts, one love, even when miles keep us apart. This little world is just for you, Sana. 🥹❤️</p>
+      <div class="actions" id="actions"></div>
+      <div class="letter" id="letter">Meri Sana, distance sirf maps par hai, mere dil mein nahi. Har din tumhe choose karta hoon, har raat tumhari kami mehsoos karta hoon, aur har kal mein tumhare saath hone ka sapna dekhta hoon. Tum meri favourite feeling, mera sukoon aur mera ghar ho. — Tumhara Babu 💋</div>
+      <div id="toast" role="status"></div>
+    </section>
+    <div class="hint">← Swipe to explore · or tap a button →</div>
+  </div>
+</main>
+
+<div class="signature">MADE WITH LOVE BY SODO ✦ FOR SANA</div>
+
+<script>
+/* ══ CONFIG — Change the start date ══════════════════════════════════════ */
+const LOVE_START = new Date("2024-01-15"); // ← Apni real date dalo (YYYY-MM-DD)
+
+/* ══ PAGES ═══════════════════════════════════════════════════════════════ */
+const pages=[
+ {badge:"A little world for you",emoji:"🧸💋",title:"Babu + Sana",message:"Sana, ye chhoti si website tumhare liye hai. Chahe hum kitne bhi door hon, mera dil hamesha tumhare paas rehta hai. ❤️",buttons:[["Open Our Story 💌","next"]]},
+ {badge:"My favourite person",emoji:"🥹❤️",title:"Meri Sana, Meri Jaan",message:"Tum sirf meri favourite person nahi ho. Tum woh sukoon ho jo busy din ke baad bhi mere dil ko milta hai. Tumhari ek message se mera poora mood badal sakta hai.",buttons:[["Aage dekho, jaan 💗","next"]]},
+ {badge:"Miles can't measure love",emoji:"🌍💞",title:"Long Distance, One Heart",message:"Kaash main abhi tumhare paas hota, tumhara haath pakadta aur bina kuch kahe tumhe hug karta. Filhaal screen ke is paar se keh raha hoon: I miss you, Sana. Har din. ❤️‍🩹",buttons:[["Send a virtual hug 🤗","hug"],["Next ➜","next"]]},
+ {badge:"If I could be there",emoji:"🫂🌙",title:"Ek Hug Jo Baaki Hai",message:"Main tumhe woh wala hug dena chahta hoon jisme duniya ka noise band ho jaye, tum safe feel karo, aur tumhe pata chale ki tum akeli nahi ho. Ek din ye distance sirf purani story hogi.",buttons:[["Hug her tight 🤗","hug"],["Next ➜","next"]]},
+ {badge:"Open when you miss me",emoji:"💌✨",title:"A Letter From Your Babu",message:"Sana, dil se likha hua ek chhota sa letter tumhara wait kar raha hai.",buttons:[["Open my heart 💌","letter"],["Next ➜","next"]]},
+ {badge:"Little things I love",emoji:"🌹💗",title:"Why You're My Person",message:"Tumhari smile, tumhara pyaar, tumhari silly baatein, tumhara care karna—tumhari chhoti-chhoti cheezein bhi mere liye priceless hain. Perfect hone ki zaroorat nahi; bas tum, apni real wali tum. 🥹",buttons:[["Kiss delivery 💋","kiss"],["Next ➜","next"]]},
+ {badge:"Sana Care Corner",emoji:"🧸☁️",title:"Babu Ki Care List",message:"Jab tak main paas nahi hoon, please apna khayal rakhna, okay? Tumhari wellbeing mere liye bohot important hai.",buttons:[["Paani pi lena 💧","water"],["Kuch kha lena 🍓","eat"],["Rest karna 🌙","rest"],["Next ➜","next"]]},
+ {badge:"For your late nights",emoji:"🌙⭐",title:"When You Miss Me",message:"Raat ko kabhi meri yaad aaye, toh sky ko dekh lena. Hum same sky ke neeche hain. Ek deep breath lena, apne aap ko gently hug karna, aur yaad rakhna—tum mere dil mein ho, even from far away.",buttons:[["A little kiss 💋","kiss"],["Next ➜","next"]]},
+ {badge:"One promise from Babu",emoji:"🤞❤️",title:"Distance Is Not The End",message:"Main bade-bade perfect promises se zyada, roz ke honest efforts mein believe karta hoon—sunna, samajhna, care karna, aur mushkil dinon mein bhi ek doosre ka saath dena. I want us to keep choosing each other.",buttons:[["I choose you 💗","promise"],["Next ➜","next"]]},
+ {badge:"Until I can hold you",emoji:"💋🧸❤️",title:"Forever, Your Babu",message:"Sana, tum meri door reh kar bhi sabse kareeb ho. Ek din virtual hugs real honge, screen ki jagah tum mere saamne hogi, aur main tumhe bataunga ki kitna miss kiya. Till then, all my love is travelling to you. 💋❤️",buttons:[["One last surprise ✨","final"],["Replay our story ↻","replay"]]}
+];
+
+/* ══ STATE ═══════════════════════════════════════════════════════════════ */
+let current=0,timer=null,remaining=5000,startedAt=0,paused=false;
+let musicOn=false,nightOn=false,audioCtx=null;
+let melodyIdx=0;
+const MELODY=[523.25,587.33,659.25,783.99,698.46,659.25,587.33,523.25,
+              659.25,783.99,880.00,783.99,659.25,783.99,698.46,659.25];
+const NOTE_DUR=0.48,NOTE_GAP=800;
+let noteTimer=null;
+
+const $=id=>document.getElementById(id);
+const progress=$("progress");
+
+/* ══ DAY COUNTER ═════════════════════════════════════════════════════════ */
+(function(){
+  const ms=Date.now()-LOVE_START.getTime();
+  const days=Math.max(0,Math.floor(ms/86400000));
+  $("dayPill").textContent="💗 "+days+" din saath";
+})();
+
+/* ══ STAR CANVAS (night mode) ════════════════════════════════════════════ */
+(function(){
+  const canvas=$("stars"),ctx=canvas.getContext("2d");
+  const stars=[];
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+  resize();window.addEventListener("resize",resize);
+  for(let i=0;i<120;i++)stars.push({x:Math.random(),y:Math.random(),r:.5+Math.random()*1.5,a:Math.random()});
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    stars.forEach(s=>{
+      s.a+=.005+Math.random()*.002;
+      const alpha=(.35+.35*Math.sin(s.a));
+      ctx.beginPath();ctx.arc(s.x*canvas.width,s.y*canvas.height,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,230,255,${alpha})`;ctx.fill()
+    });
+    requestAnimationFrame(draw)
+  }
+  draw();
+})();
+
+/* ══ BUILD PROGRESS ══════════════════════════════════════════════════════ */
+pages.forEach((_,i)=>{
+  const s=document.createElement("div");s.className="segment";s.innerHTML="<span></span>";progress.appendChild(s)
+});
+
+/* ══ RENDER ══════════════════════════════════════════════════════════════ */
+function render(index,animate=true){
+  current=(index+pages.length)%pages.length;
+  const p=pages[current],card=$("card");
+  if(animate){card.animate([{opacity:.5,transform:"translateX(22px) scale(.98)"},{opacity:1,transform:"translateX(0) scale(1)"}],{duration:330,easing:"ease-out"});}
+  $("badge").textContent=p.badge;$("emoji").textContent=p.emoji;$("title").textContent=p.title;$("message").textContent=p.message;
+  $("pageCount").textContent=String(current+1).padStart(2,"0")+" / "+String(pages.length).padStart(2,"0");
+  $("toast").textContent="";$("letter").classList.remove("open");
+  const actions=$("actions");actions.innerHTML="";
+  p.buttons.forEach(([label,action])=>{
+    const b=document.createElement("button");b.textContent=label;
+    if(action==="next"||action==="replay")b.className="";else b.className="secondary";
+    b.addEventListener("click",()=>handle(action));actions.appendChild(b)
+  });
+  [...progress.children].forEach((s,i)=>{s.classList.toggle("done",i<current);s.querySelector("span").style.width=i<current?"100%":"0%"});
+  clearTimer();
+  if(current<pages.length-1){remaining=5000;if(!paused)startTimer()}else{remaining=0}
+}
+
+/* ══ HANDLE ACTIONS ══════════════════════════════════════════════════════ */
+function handle(action){
+  if(action==="next")goNext();
+  if(action==="replay"){paused=false;render(0);return}
+  if(action==="letter"){$("letter").classList.add("open");$("toast").textContent="From your Babu, with all his heart 💗";burst(14)}
+  if(action==="hug"){$("toast").textContent="Babu ka tight virtual hug Sana tak pahunch gaya! 🤗❤️";burst(22)}
+  if(action==="kiss"){kissBurst();$("toast").textContent="Muaaah! One sweet kiss for Sana 💋❤️";burst(12)}
+  if(action==="water"){$("toast").textContent="Sana, thoda paani pi lo please 💧 Babu cares!";burst(7)}
+  if(action==="eat"){$("toast").textContent="Kuch tasty kha lena, meri jaan 🍓 Tumhara khayal zaroori hai.";burst(7)}
+  if(action==="rest"){$("toast").textContent="Phone side pe, eyes rest, aur sweet dreams 🌙💗";burst(7)}
+  if(action==="promise"){$("toast").textContent="Babu chooses you—one honest day at a time. ❤️";burst(20)}
+  if(action==="final"){
+    paused=true;clearTimer();
+    $("badge").textContent="Your secret surprise";$("emoji").textContent="💋💋💋";
+    $("title").textContent="Muaaah, Sana!";
+    $("message").textContent="A thousand kisses, the tightest hug, and all the love my heart can send across the distance. I love you, Sana. — Babu ❤️";
+    $("toast").textContent="MADE WITH LOVE BY SODO ✦";burst(40);kissBurst()
+  }
+  if(action==="yes"){$("toast").textContent="Yayyy! Keep that smile, Sana! 💖";burst(24)}
+  if(action==="yes2"){$("toast").textContent="That's the spirit, Pookie! 🧸✨";burst(24)}
+}
+
+function goNext(){if(current<pages.length-1)render(current+1);else{paused=true;clearTimer()}}
+function goPrev(){if(current>0)render(current-1)}
+function clearTimer(){if(timer)clearInterval(timer);timer=null}
+function startTimer(){
+  clearTimer();if(paused||current>=pages.length-1)return;
+  startedAt=Date.now();const bar=progress.children[current].querySelector("span");
+  timer=setInterval(()=>{
+    const elapsed=Date.now()-startedAt;const pct=Math.min(100,elapsed/5000*100);bar.style.width=pct+"%";
+    if(elapsed>=5000){clearTimer();render(current+1)}
+  },50)
+}
+
+/* ══ PARTICLES ════════════════════════════════════════════════════════════ */
+function kissBurst(){
+  for(let i=0;i<9;i++){
+    const el=document.createElement("span");el.className="heart-pop";el.textContent=i%2?"💋":"❤️";
+    el.style.left=(12+Math.random()*76)+"%";el.style.top=(38+Math.random()*35)+"%";
+    document.body.appendChild(el);setTimeout(()=>el.remove(),1400)
+  }
+}
+function burst(n=12){
+  const symbols=["💗","💕","💖","✨","🌸"];
+  for(let i=0;i<n;i++){
+    const el=document.createElement("span");el.className="float";el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left=(Math.random()*100)+"%";el.style.fontSize=(16+Math.random()*22)+"px";
+    el.style.animationDuration=(2.3+Math.random()*2.5)+"s";
+    $("decor").appendChild(el);setTimeout(()=>el.remove(),5000)
+  }
+}
+setInterval(()=>{if(document.visibilityState==="visible")burst(1)},1000);
+
+/* ══ SPARKLE TRAIL ════════════════════════════════════════════════════════ */
+const sparkEmoji=["✨","💗","🌸","💫","⭐"];
+let lastSpark=0;
+function spawnSparkle(x,y){
+  const now=Date.now();if(now-lastSpark<75)return;lastSpark=now;
+  const el=document.createElement("span");el.className="sp";
+  el.textContent=sparkEmoji[Math.floor(Math.random()*sparkEmoji.length)];
+  el.style.left=(x-8)+"px";el.style.top=(y-8)+"px";
+  document.body.appendChild(el);setTimeout(()=>el.remove(),700)
+}
+document.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;spawnSparkle(e.clientX,e.clientY)});
+document.addEventListener("touchmove",e=>{const t=e.touches[0];spawnSparkle(t.clientX,t.clientY)},{passive:true});
+
+/* ══ SWIPE ════════════════════════════════════════════════════════════════ */
+$("stage").addEventListener("touchstart",e=>{window.touchX=e.changedTouches[0].clientX},{passive:true});
+$("stage").addEventListener("touchend",e=>{
+  if(window.touchX==null)return;
+  const dx=e.changedTouches[0].clientX-window.touchX;
+  if(Math.abs(dx)>55){if(dx<0)goNext();else goPrev()}
+  window.touchX=null
+},{passive:true});
+
+/* ══ KEYBOARD ═════════════════════════════════════════════════════════════ */
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight"||e.key==="ArrowDown")goNext();
+  if(e.key==="ArrowLeft"||e.key==="ArrowUp")goPrev();
+});
+
+/* ══ MUSIC ════════════════════════════════════════════════════════════════ */
+function initAudio(){
+  if(audioCtx)return;
+  try{audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){return false}
+  return true
+}
+function playNote(){
+  if(!audioCtx||!musicOn)return;
+  if(audioCtx.state==="suspended")audioCtx.resume();
+  const freq=MELODY[melodyIdx%MELODY.length];melodyIdx++;
+  const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+  osc.type="sine";osc.frequency.value=freq;
+  gain.gain.setValueAtTime(.0001,audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.04,audioCtx.currentTime+.06);
+  gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+NOTE_DUR);
+  osc.connect(gain);gain.connect(audioCtx.destination);
+  osc.start();osc.stop(audioCtx.currentTime+NOTE_DUR+.01)
+}
+$("musicBtn").addEventListener("click",()=>{
+  musicOn=!musicOn;
+  if(musicOn){
+    initAudio();
+    if(!audioCtx){musicOn=false;$("musicBtn").textContent="♫ Music unavailable";return}
+    if(audioCtx.state==="suspended")audioCtx.resume();
+    playNote();noteTimer=setInterval(playNote,NOTE_GAP);
+    $("musicBtn").textContent="♫ Music: On"
+  }else{
+    clearInterval(noteTimer);if(audioCtx)audioCtx.suspend();$("musicBtn").textContent="♫ Music: Off"
+  }
+});
+
+/* ══ NIGHT MODE ═══════════════════════════════════════════════════════════ */
+$("nightBtn").addEventListener("click",()=>{
+  nightOn=!nightOn;
+  document.body.classList.toggle("night",nightOn);
+  $("nightBtn").textContent=nightOn?"☀️ Day":"🌙 Night";
+});
+
+/* ══ MOOD CHECK ═══════════════════════════════════════════════════════════ */
+const moodReplies={
+  happy:"Yayyy! ✨ Tumhari khushi dekh ke Babu ka dil bhar aata hai. Aisi hi muskurati raho, Sana. Teri smile meri favourite cheez hai. 💗",
+  miss:"Mujhe bhi miss kar rahi ho? Sunke acha laga aur dil bhi toota thoda. 💔 Par yaad rakho—har miss ka matlab hai ye pyaar kitna gehra hai. Jaldi milenge. ❤️",
+  tired:"Arey meri jaan, rest karo. Phone neeche rakh do, aankhein band karo. Main hoon na—tumhare sapnon mein bhi, aur subah bhi. 🌙🧸",
+  cry:"Rona chahti ho? Ro lena, bilkul theek hai. Tum akeli nahi ho—main yahan hoon, screen ke is taraf, tumhare liye. Ek lambi saansi lo aur khud ko hug karo. 🫂❤️"
+};
+$("moodFab").addEventListener("click",()=>{
+  $("moodOverlay").classList.add("open");$("moodReply").textContent="";$("moodReply").classList.remove("show");
+});
+$("moodClose").addEventListener("click",()=>$("moodOverlay").classList.remove("open"));
+$("moodOverlay").addEventListener("click",e=>{if(e.target===$("moodOverlay"))$("moodOverlay").classList.remove("open")});
+document.querySelectorAll(".mood-choice").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const reply=moodReplies[btn.dataset.mood]||"Babu loves you. ❤️";
+    const el=$("moodReply");el.textContent=reply;el.classList.remove("show");
+    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add("show")));
+    burst(8);
+  })
+});
+
+/* ══ VISIBILITY ═══════════════════════════════════════════════════════════ */
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden)clearTimer();
+  else if(current<pages.length-1&&!paused)startTimer()
+});
+
+/* ══ BOOT ══════════════════════════════════════════════════════════════════ */
+render(0,false);
+</script>
+</body>
+</html>
